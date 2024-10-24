@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://devhlevrt8ytn"]
+
+[ext_resource type="Texture2D" uid="uid://dkt8ykwcgc7fi" path="res://assets/Tiles/tile_0000.png" id="1_mm523"]
+[ext_resource type="Script" path="res://scripts/spring_platform.gd" id="1_vqiu1"]
+[ext_resource type="Texture2D" uid="uid://dvucrylx4suhq" path="res://assets/Tiles/tile_0107.png" id="2_yttbs"]
+[ext_resource type="Texture2D" uid="uid://lhubvykasuss" path="res://assets/Tiles/tile_0108.png" id="3_sumal"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdjgw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yttbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sumal")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68kg4"]
+size = Vector2(16.5, 19)
+
+[node name="spring_platform" type="StaticBody2D" groups=["platform"]]
+script = ExtResource("1_vqiu1")
+jump_force = 1.6
+
+[node name="base" type="Sprite2D" parent="."]
+texture = ExtResource("1_mm523")
+
+[node name="spring" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_wdjgw")
+frame = 1
+frame_progress = 0.42096
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_68kg4")
+one_way_collision = true
+
+[connection signal="animation_finished" from="spring" to="." method="_on_spring_animation_finished"]

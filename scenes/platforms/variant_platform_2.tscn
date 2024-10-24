@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://pufsv800g5je"]
+
+[ext_resource type="Texture2D" uid="uid://b7wg3gk6o7cuc" path="res://assets/Tiles/tile_0001.png" id="1_b6su0"]
+[ext_resource type="Script" path="res://scripts/variant_platform_2.gd" id="1_xyxky"]
+[ext_resource type="Texture2D" uid="uid://dlyhc3o43rq3f" path="res://assets/Tiles/tile_0003.png" id="2_bhaqy"]
+[ext_resource type="Texture2D" uid="uid://c1ea0d8wioy7l" path="res://assets/Tiles/tile_0106.png" id="3_qmbi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbiku"]
+size = Vector2(36, 18)
+
+[node name="variant_platform2" type="StaticBody2D" groups=["platform"]]
+script = ExtResource("1_xyxky")
+
+[node name="Tile0001" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+texture = ExtResource("1_b6su0")
+
+[node name="Tile0003" type="Sprite2D" parent="."]
+position = Vector2(9, 0)
+texture = ExtResource("2_bhaqy")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pbiku")
+one_way_collision = true
+
+[node name="Tile0107" type="Sprite2D" parent="."]
+position = Vector2(-9, -18)
+texture = ExtResource("3_qmbi0")

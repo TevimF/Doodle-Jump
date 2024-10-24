@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7bgfpnjb26d0"]
+
+[ext_resource type="Texture2D" uid="uid://b7wg3gk6o7cuc" path="res://assets/Tiles/tile_0001.png" id="1_fxldo"]
+[ext_resource type="Script" path="res://scripts/platform.gd" id="1_t1n6c"]
+[ext_resource type="Texture2D" uid="uid://dlyhc3o43rq3f" path="res://assets/Tiles/tile_0003.png" id="2_m27jt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbiku"]
+size = Vector2(36, 18)
+
+[node name="platform" type="StaticBody2D" groups=["platform"]]
+script = ExtResource("1_t1n6c")
+
+[node name="left_dirt" type="Sprite2D" parent="."]
+position = Vector2(-9, 0)
+texture = ExtResource("1_fxldo")
+
+[node name="right_dirt" type="Sprite2D" parent="."]
+position = Vector2(9, 0)
+texture = ExtResource("2_m27jt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pbiku")
+one_way_collision = true
