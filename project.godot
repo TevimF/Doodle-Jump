@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Doodle Jmp"
+config/name="Doodle Jump"
 run/main_scene="res://scenes/doodle_jump.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 
@@ -26,10 +30,18 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Doodle Jmp"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/silent_wolf/plugin.cfg")
+
 [global_group]
 
 platform=""
 player=""
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

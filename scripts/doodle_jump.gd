@@ -16,6 +16,7 @@ var level_1 = 333
 
 func _ready() -> void:	
 	level_generator(7)
+	$bg_music.play()
 
 func level_generator(amount):
 	for items in amount:
@@ -38,18 +39,22 @@ func level_generator(amount):
 		var new_platform : StaticBody2D
 
 		#plataforma de mola
-		if random_number < 15:
+		if random_number < 12:
 			new_platform = platform_scene[3].instantiate() as StaticBody2D
 
 		#plataforma normal
-		elif random_number < 70:
+		elif random_number < 65:
 			new_platform = platform_scene[0].instantiate() as StaticBody2D
 
 		# variação da plataforma normal
-		elif random_number < 100:
+		elif random_number < 95:
 			# 1 ou 2
 			new_platform = platform_scene[1 + randi() % 2 ].instantiate() as StaticBody2D
-		
+
+		elif random_number < 115:
+			#passarim
+			new_platform = platform_scene[5].instantiate() as StaticBody2D
+
 		#plataforma de nuvem
 		else:
 			new_platform = platform_scene[4].instantiate() as StaticBody2D
@@ -63,21 +68,29 @@ func level_generator(amount):
 
 	
 func _physics_process(_delta: float) -> void:
-	if player.position.y < camera.position.y :
+	#verifica se o player ainda existe
+	if player == null :
+		await get_tree().create_timer(1.0).timeout
+		if get_tree().change_scene_to_file("res://scenes/title_screen.tscn") != OK:
+			printerr("Failed to change scene")
+		return
+	
+	if  player.position.y < camera.position.y :
 		camera.position.y = player.position.y 
 	update_score()
 
 func update_score() -> void:
 	score = int((camera_start_position - camera.position.y)/10)
 	score_label.text = "Score: " + str(score)
+	if score > Global.highscore :
+		Global.highscore = score
 
 func delete_object(object : Node2D) -> void:
-	if object.is_in_group("player") :
-		print("GAME OVER")
 	if object.name == "cloud_platform" :
 		var tween = get_tree().create_tween()
 		tween.tween_property(object, "modulate", Color(1, 1, 1, 0), 1)
 		tween.connect("finished", Callable(object, "queue_free"))
+		object.name = "fading_cloud_platform"  # muda o nome para evitar que o objeto seja deletado novamente
 		level_generator(1)
 	elif object.is_in_group("platform") :
 		object.queue_free()

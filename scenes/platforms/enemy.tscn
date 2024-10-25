@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://cw86krvhbmxgd"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_pycwk"]
+[ext_resource type="Texture2D" uid="uid://bafl324q2aa47" path="res://assets/actors/tile_0024.png" id="2_4gqmk"]
+[ext_resource type="Texture2D" uid="uid://xdkpefa4ndxg" path="res://assets/actors/tile_0025.png" id="3_e4glr"]
+[ext_resource type="Texture2D" uid="uid://w72qy5eea82q" path="res://assets/actors/tile_0026.png" id="4_74rn7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3rsee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4gqmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_e4glr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_74rn7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_foid0"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewrhx"]
+size = Vector2(14, 6)
+
+[node name="enemy" type="StaticBody2D" groups=["platform"]]
+script = ExtResource("1_pycwk")
+speed = 80.0
+
+[node name="anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3rsee")
+frame_progress = 0.260471
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_foid0")
+one_way_collision = true
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ewrhx")
+debug_color = Color(0.978198, 0, 0.398103, 0.42)
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

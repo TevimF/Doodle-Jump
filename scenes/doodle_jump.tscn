@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5depasdf35sq"]
+[gd_scene load_steps=17 format=3 uid="uid://b5depasdf35sq"]
 
 [ext_resource type="Script" path="res://scripts/doodle_jump.gd" id="1_ju6y1"]
 [ext_resource type="PackedScene" uid="uid://bxscb4bjgy1gq" path="res://scenes/actors/player_green.tscn" id="1_lrlq2"]
@@ -7,14 +7,21 @@
 [ext_resource type="PackedScene" uid="uid://dvef0qo4c5y5m" path="res://scenes/platforms/cloud_platform.tscn" id="4_17mq0"]
 [ext_resource type="PackedScene" uid="uid://pufsv800g5je" path="res://scenes/platforms/variant_platform_2.tscn" id="4_fosdo"]
 [ext_resource type="PackedScene" uid="uid://devhlevrt8ytn" path="res://scenes/platforms/spring_platform.tscn" id="5_rmu8l"]
+[ext_resource type="PackedScene" uid="uid://cw86krvhbmxgd" path="res://scenes/platforms/enemy.tscn" id="7_jyixr"]
 [ext_resource type="FontFile" uid="uid://duwkkfgiq1w8f" path="res://assets/fonts/Kenney Pixel.ttf" id="8_on5mq"]
+[ext_resource type="PackedScene" uid="uid://duhsx1gntola" path="res://scenes/bg.tscn" id="10_f30dh"]
+[ext_resource type="Texture2D" uid="uid://dgqruv20pwn1j" path="res://assets/extra/btn_left-normal.png" id="11_ged7b"]
+[ext_resource type="Texture2D" uid="uid://bqx1gb8roaynt" path="res://assets/extra/btn_left-pressed.png" id="12_a5ge5"]
+[ext_resource type="Texture2D" uid="uid://dolelbcwr5m8u" path="res://assets/extra/btn_right-normal.png" id="13_bwoab"]
+[ext_resource type="Texture2D" uid="uid://cxg80ifv54suw" path="res://assets/extra/btn_right-pressed.png" id="14_wxcs5"]
+[ext_resource type="AudioStream" uid="uid://bkyyag2356fx" path="res://assets/sounds/657644_josefpres_8-bit-game-loop-010-simple-mix-2-short-120-bpm.mp3" id="15_awsj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8ruq"]
 size = Vector2(180, 20)
 
 [node name="DoodleJump" type="Node2D"]
 script = ExtResource("1_ju6y1")
-platform_scene = Array[PackedScene]([ExtResource("3_ak8x5"), ExtResource("3_4yfsj"), ExtResource("4_fosdo"), ExtResource("5_rmu8l"), ExtResource("4_17mq0")])
+platform_scene = Array[PackedScene]([ExtResource("3_ak8x5"), ExtResource("3_4yfsj"), ExtResource("4_fosdo"), ExtResource("5_rmu8l"), ExtResource("4_17mq0"), ExtResource("7_jyixr")])
 
 [node name="platform_container" type="Node2D" parent="."]
 
@@ -45,56 +52,50 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="platform_cleaner" type="Area2D" parent="camera"]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(-90, -154)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="camera/platform_cleaner"]
 position = Vector2(90, 337)
 shape = SubResource("RectangleShape2D_n8ruq")
 
-[node name="buttons" type="HBoxContainer" parent="camera"]
-custom_minimum_size = Vector2(180, 70)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = 80.0
-offset_right = 90.0
-offset_bottom = 160.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 10
-theme_override_constants/separation = 20
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Left_button" type="Button" parent="camera/buttons"]
-modulate = Color(1, 0.168627, 0.113725, 0.215686)
-self_modulate = Color(0.0666667, 1, 0.0666667, 0.737255)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 95
-toggle_mode = true
-button_pressed = true
-action_mode = 0
-
-[node name="Right_button" type="Button" parent="camera/buttons"]
-modulate = Color(1, 0.168627, 0.113725, 0.215686)
-self_modulate = Color(0.0666667, 1, 0.0666667, 0.737255)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 95
-toggle_mode = true
-button_pressed = true
-action_mode = 0
-
 [node name="player" parent="." instance=ExtResource("1_lrlq2")]
 position = Vector2(90, 160)
 
+[node name="BG" parent="." instance=ExtResource("10_f30dh")]
+
+[node name="buttons" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="buttons"]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/separation = 30
+
+[node name="left_bt" type="TouchScreenButton" parent="buttons/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.692)
+position = Vector2(5, 0)
+scale = Vector2(2, 1.5)
+texture_normal = ExtResource("11_ged7b")
+texture_pressed = ExtResource("12_a5ge5")
+action = "ui_left"
+
+[node name="right_bt" type="TouchScreenButton" parent="buttons/HBoxContainer"]
+modulate = Color(1, 1, 1, 0.692)
+position = Vector2(110, 0)
+scale = Vector2(2, 1.5)
+texture_normal = ExtResource("13_bwoab")
+texture_pressed = ExtResource("14_wxcs5")
+action = "ui_right"
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_awsj2")
+autoplay = true
+
 [connection signal="body_entered" from="camera/platform_cleaner" to="." method="_on_platform_cleaner_body_entered"]
-[connection signal="button_down" from="camera/buttons/Left_button" to="player" method="_on_left_button_button_down"]
-[connection signal="button_up" from="camera/buttons/Left_button" to="player" method="_on_left_button_button_up"]
-[connection signal="button_down" from="camera/buttons/Right_button" to="player" method="_on_right_button_button_down"]
-[connection signal="button_up" from="camera/buttons/Right_button" to="player" method="_on_right_button_button_up"]

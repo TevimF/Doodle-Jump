@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://duhsx1gntola"]
+
+[ext_resource type="Shader" path="res://assets/shader/doodle_jump.gdshader" id="1_mguvl"]
+[ext_resource type="Texture2D" uid="uid://bpm6c0jj8i7om" path="res://assets/backgrounds/tile_0019.png" id="2_6hd6m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vahml"]
+shader = ExtResource("1_mguvl")
+shader_parameter/speed = 1.0
+
+[node name="BG" type="CanvasLayer"]
+layer = -1
+
+[node name="bg_texture" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_vahml")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6hd6m")
+stretch_mode = 1
