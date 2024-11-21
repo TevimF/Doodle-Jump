@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Doodle Jump"
-run/main_scene="res://scenes/doodle_jump.tscn"
+config/version="1.0"
+run/main_scene="res://scenes/title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -25,6 +26,7 @@ window/size/viewport_width=180
 window/size/viewport_height=320
 window/size/initial_position_type=2
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [dotnet]
 
@@ -32,7 +34,7 @@ project/assembly_name="Doodle Jmp"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/silent_wolf/silent_wolf/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 

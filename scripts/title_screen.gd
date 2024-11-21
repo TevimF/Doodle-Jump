@@ -1,8 +1,10 @@
 extends Control
 
 @onready var highscore : Label = $main/high_score
+@onready var music : AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
+  music.play()
   if highscore:
     highscore.text = "Highscore:\n" + str(Global.highscore)
   else:

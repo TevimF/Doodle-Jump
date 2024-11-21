@@ -8,7 +8,7 @@ const GRAVITY : int = 10
 @onready var bounce_sound : AudioStreamPlayer = $bounce_sound
 @onready var bounce_sound2 : AudioStreamPlayer = $bounce_sound2
 var input_direction : float = 0.0
-
+signal player_stopped
 
 # Variáveis para o estado dos botões
 var left_button_pressed = false
@@ -44,9 +44,13 @@ func move(delta):
 		anim.play("idle")
 	
 	if collision:
-		if collision.get_collider().jump_force > 1:
+		if collision.get_collider().name == "base_platform":
+			player_stopped.emit()
+		if collision.get_collider().jump_force == 0:
+			return
+		elif collision.get_collider().jump_force > 1:
 			bounce_sound2.play()
-		else :
+		else:
 			bounce_sound.play()
 			
 		velocity.y = -jump_force * collision.get_collider().jump_force

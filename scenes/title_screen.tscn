@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1yecosuol5s"]
+[gd_scene load_steps=11 format=3 uid="uid://b1yecosuol5s"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_uyupl"]
 [ext_resource type="Texture2D" uid="uid://d11e7dookt23s" path="res://assets/extra/logo-doodle-jump.png" id="2_shirv"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b2jhi16bsali6" path="res://assets/extra/btn_quit-pressed.png" id="6_u8swg"]
 [ext_resource type="FontFile" uid="uid://duwkkfgiq1w8f" path="res://assets/fonts/Kenney Pixel.ttf" id="7_lexif"]
 [ext_resource type="PackedScene" uid="uid://duhsx1gntola" path="res://scenes/bg.tscn" id="8_rvpw1"]
+[ext_resource type="AudioStream" uid="uid://doqqy6s04h2st" path="res://assets/sounds/658584_josefpres_8-bit-game-loop-013-simple-mix-4-short-120-bpm (online-audio-converter.com).mp3" id="9_4l0fj"]
+[ext_resource type="FontFile" uid="uid://2p4nmwbfe7i" path="res://assets/fonts/Kenney Pixel Square.ttf" id="10_66ept"]
 
 [node name="title_screen" type="Control"]
 layout_mode = 3
@@ -24,29 +26,37 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -62.5
-offset_bottom = 62.5
+offset_top = -109.5
+offset_bottom = 109.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 15
 
 [node name="game_title" type="TextureRect" parent="main"]
+custom_minimum_size = Vector2(90, 90)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 texture = ExtResource("2_shirv")
 expand_mode = 5
+stretch_mode = 4
 
 [node name="buttons" type="HBoxContainer" parent="main"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 50)
 layout_direction = 1
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="start_btn" type="TouchScreenButton" parent="main/buttons"]
-position = Vector2(56, 9)
+position = Vector2(44, 9)
 texture_normal = ExtResource("3_3thg8")
 texture_pressed = ExtResource("4_mr7js")
 
 [node name="exit_btn" type="TouchScreenButton" parent="main/buttons"]
-position = Vector2(94, 9)
+position = Vector2(101, 9)
 texture_normal = ExtResource("5_hsxem")
 texture_pressed = ExtResource("6_u8swg")
 
@@ -54,10 +64,40 @@ texture_pressed = ExtResource("6_u8swg")
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("7_lexif")
+theme_override_font_sizes/font_size = 32
 text = "High score: "
 horizontal_alignment = 1
 
 [node name="BG" parent="main" instance=ExtResource("8_rvpw1")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4l0fj")
+volume_db = -10.0
+autoplay = true
+
+[node name="Label" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(180, 30)
+layout_direction = 2
+layout_mode = 0
+offset_left = 27.0
+offset_top = 300.0
+offset_right = 207.0
+offset_bottom = 330.0
+scale = Vector2(0.7, 0.584)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 11.34
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("7_lexif")
+theme_override_fonts/bold_font = ExtResource("10_66ept")
+theme_override_font_sizes/bold_font_size = 8
+bbcode_enabled = true
+text = "         this game was developed by 
+[b] [color=green] Estêvão Fonseca[/color] [/b] at [b] [color=red]The Lobby Inc[/color] [/b] "
+scroll_active = false
+autowrap_mode = 0
+language = "en"
 
 [connection signal="pressed" from="main/buttons/start_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="main/buttons/exit_btn" to="." method="_on_exit_btn_pressed"]
