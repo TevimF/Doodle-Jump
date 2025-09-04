@@ -23,4 +23,10 @@ Para garantir uma curva de aprendizado suave, limitei a pontuação a 500 pontos
 
 * **Movimento:** Setas Direcionais (Esquerda/Direita) ou Teclas A/D.
 
+## ⏬ Faça o Dowload do apk aqui!
+
+![Dowload](https://github.com/TevimF/Doodle-Jump/releases/tag/Publish)
+
+
 ---
+
