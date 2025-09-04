@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckyi05g6xyrlt"]
 
-[ext_resource type="Script" path="res://scripts/platform.gd" id="1_xrmss"]
+[ext_resource type="Script" uid="uid://w6c22bn4pfe5" path="res://scripts/platform.gd" id="1_xrmss"]
 [ext_resource type="Texture2D" uid="uid://b7wg3gk6o7cuc" path="res://assets/Tiles/tile_0001.png" id="2_6vrle"]
 [ext_resource type="Texture2D" uid="uid://dlyhc3o43rq3f" path="res://assets/Tiles/tile_0003.png" id="3_f5ux5"]
 [ext_resource type="Texture2D" uid="uid://mr7pv1gcijb8" path="res://assets/Tiles/tile_0002.png" id="4_78he5"]

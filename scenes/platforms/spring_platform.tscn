@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://devhlevrt8ytn"]
 
 [ext_resource type="Texture2D" uid="uid://dkt8ykwcgc7fi" path="res://assets/Tiles/tile_0000.png" id="1_mm523"]
-[ext_resource type="Script" path="res://scripts/spring_platform.gd" id="1_vqiu1"]
+[ext_resource type="Script" uid="uid://b6btb44dgfxef" path="res://scripts/spring_platform.gd" id="1_vqiu1"]
 [ext_resource type="Texture2D" uid="uid://dvucrylx4suhq" path="res://assets/Tiles/tile_0107.png" id="2_yttbs"]
 [ext_resource type="Texture2D" uid="uid://lhubvykasuss" path="res://assets/Tiles/tile_0108.png" id="3_sumal"]
 

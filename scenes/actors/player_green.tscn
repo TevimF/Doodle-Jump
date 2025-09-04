@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxscb4bjgy1gq"]
 
 [ext_resource type="Texture2D" uid="uid://b3uek46kfujp6" path="res://assets/actors/tile_0001.png" id="1_bpg4x"]
-[ext_resource type="Script" path="res://scripts/player_green.gd" id="1_o17sc"]
+[ext_resource type="Script" uid="uid://bcp3h18h0snpj" path="res://scripts/player_green.gd" id="1_o17sc"]
 [ext_resource type="Texture2D" uid="uid://buw1ujq3gae3l" path="res://assets/actors/tile_0000.png" id="2_gidpu"]
 [ext_resource type="AudioStream" uid="uid://bu1ulmh13wsia" path="res://assets/sounds/717692_maodin204_retro-jump-1.mp3" id="4_d5qw2"]
 [ext_resource type="AudioStream" uid="uid://b27pilnqbt4sg" path="res://assets/sounds/425354_soundholder_8bit_jump_19.mp3" id="5_f32qo"]
